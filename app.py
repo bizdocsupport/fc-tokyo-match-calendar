@@ -419,16 +419,7 @@ def render_match_card(row: pd.Series) -> None:
         else ""
     )
 
-    links = "".join(
-        filter(
-            None,
-            [
-                safe_link(row["official_url"], "公式情報"),
-                safe_link(row["ticket_url"], "チケット情報"),
-            ],
-        )
-    )
-    link_row = f'<div class="link-row">{links}</div>' if links else ""
+    link_row = ""
 
     st.markdown(
         f"""

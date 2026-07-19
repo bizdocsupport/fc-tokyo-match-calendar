@@ -167,7 +167,7 @@ def inject_css() -> None:
   border-radius:14px;
   padding:15px 17px;
   background:white;
-  margin:0 0 10px;
+  margin:0 0 18px;
   box-shadow:0 3px 13px rgba(23,32,51,.045);
 }
 .match-top {

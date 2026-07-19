@@ -193,17 +193,18 @@ def inject_css() -> None:
   font-weight:850;
   color:var(--fct-blue);
   font-size:1.1rem;
+  line-height:1.5;
 }
 .match-title {
   font-size:1.05rem;
   font-weight:800;
-  margin:.55rem 0 .32rem;
+  margin:.55rem 0 .45rem;
   color:var(--fct-text);
 }
 .match-meta {
   color:#5e6878;
   font-size:.86rem;
-  line-height:1.55;
+  line-height:1.7;
 }
 .match-note {
   margin-top:.55rem;

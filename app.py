@@ -468,7 +468,7 @@ st.markdown(
     """
 <div class="hero">
   <div class="hero-kicker">FC TOKYO MATCH CALENDAR｜非公式</div>
-  <h1>試合日程を、いつもの<span class="no-break">カレンダーへ。</span></h1>
+  <h1>試合日程を、<span class="no-break">いつものカレンダーへ。</span></h1>
   <p>
     FC東京トップチームとFC東京U-21の日程を登録できます。
     日時未定の試合は候補期間を1件で表示し、確定後は同じ予定が正式日時へ更新されます。

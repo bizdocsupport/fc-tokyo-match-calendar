@@ -111,10 +111,9 @@ def inject_css() -> None:
   margin:.25rem 0 .45rem;
   line-height:1.12;
 }
-
 .no-break {
-  white-space: nowrap;
-  
+  white-space:nowrap;
+}
 .hero p {
   margin:0;
   max-width:720px;
@@ -162,12 +161,16 @@ def inject_css() -> None:
   color:#4c2530;
   margin:8px 0 20px;
 }
+.match-card-wrapper {
+  display:block;
+  margin:0 0 18px 0;
+}
 .match-card {
+  display:block;
   border:1px solid var(--fct-border);
   border-radius:14px;
   padding:15px 17px;
   background:white;
-  margin:0 0 18px;
   box-shadow:0 3px 13px rgba(23,32,51,.045);
 }
 .match-top {
@@ -193,18 +196,24 @@ def inject_css() -> None:
   font-weight:850;
   color:var(--fct-blue);
   font-size:1.1rem;
-  line-height:1.5;
+  line-height:1.45;
 }
 .match-title {
   font-size:1.05rem;
   font-weight:800;
-  margin:.55rem 0 .45rem;
+  margin:.55rem 0 .42rem;
   color:var(--fct-text);
 }
 .match-meta {
   color:#5e6878;
   font-size:.86rem;
-  line-height:1.7;
+  line-height:1.65;
+}
+.match-candidate {
+  margin-top:.35rem;
+  color:#5e6878;
+  font-size:.86rem;
+  line-height:1.65;
 }
 .match-note {
   margin-top:.55rem;
@@ -212,12 +221,6 @@ def inject_css() -> None:
   border-top:1px dashed #d9e2ef;
   color:#687385;
   font-size:.82rem;
-}
-.link-row a {
-  display:inline-block;
-  margin:7px 13px 0 0;
-  font-size:.82rem;
-  font-weight:700;
 }
 .small-muted {
   color:#6b7585;
@@ -373,17 +376,10 @@ def status_class(status: str) -> tuple[str, str]:
     return "tentative", status or "候補日あり"
 
 
-def safe_link(url: str, label: str) -> str:
-    if not url:
-        return ""
-    return (
-        f'<a href="{html.escape(url, quote=True)}" '
-        f'target="_blank" rel="noopener noreferrer">{html.escape(label)}</a>'
-    )
-
-
 def render_match_card(row: pd.Series) -> None:
+    """1試合分をカード形式で表示する。"""
     status_css, status_label = status_class(row["status"])
+
     side = row["home_away"].upper()
     side_css = "home" if side == "HOME" else "away" if side == "AWAY" else ""
     side_badge = (
@@ -410,8 +406,9 @@ def render_match_card(row: pd.Series) -> None:
     candidate_detail = ""
     if row["candidate_dates"] and row["status"] != "確定":
         candidate_detail = (
-            f'<div class="match-meta">候補日：'
-            f'{html.escape(row["candidate_dates"])}</div>'
+            '<div class="match-candidate">'
+            f'候補日：{html.escape(row["candidate_dates"])}'
+            "</div>"
         )
 
     note = (
@@ -420,24 +417,23 @@ def render_match_card(row: pd.Series) -> None:
         else ""
     )
 
-    link_row = ""
-
-    st.markdown(
+    # st.html()を使い、Markdownの段落処理によるレイアウト崩れを避ける。
+    st.html(
         f"""
-<div class="match-card">
-  <div class="match-top">
-    <span class="match-date">{html.escape(format_schedule_date(row))}</span>
-    <span class="badge {status_css}">{html.escape(status_label)}</span>
-    {side_badge}
+<div class="match-card-wrapper">
+  <div class="match-card">
+    <div class="match-top">
+      <span class="match-date">{html.escape(format_schedule_date(row))}</span>
+      <span class="badge {status_css}">{html.escape(status_label)}</span>
+      {side_badge}
+    </div>
+    <div class="match-title">{html.escape(title)}</div>
+    <div class="match-meta">{meta}</div>
+    {candidate_detail}
+    {note}
   </div>
-  <div class="match-title">{html.escape(title)}</div>
-  <div class="match-meta">{meta}</div>
-  {candidate_detail}
-  {note}
-  {link_row}
 </div>
-        """,
-        unsafe_allow_html=True,
+        """
     )
 
 
@@ -460,7 +456,7 @@ st.markdown(
     """
 <div class="hero">
   <div class="hero-kicker">FC TOKYO MATCH CALENDAR｜非公式</div>
-  <h1>試合日程を、<span class="no-break">いつものカレンダーへ。</span></h1>
+  <h1>試合日程を、いつもの<span class="no-break">カレンダーへ。</span></h1>
   <p>
     FC東京トップチームとFC東京U-21の日程を登録できます。
     日時未定の試合は候補期間を1件で表示し、確定後は同じ予定が正式日時へ更新されます。

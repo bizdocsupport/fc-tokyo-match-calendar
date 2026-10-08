@@ -470,7 +470,7 @@ function getSettings_() {
     U21_CALENDAR_ID: clean_(props.getProperty('U21_CALENDAR_ID')),
     TICKET_APP_URL: clean_(
       props.getProperty('TICKET_APP_URL')
-      || 'https://club-ticket-navi-fctokyo-test.streamlit.app/'
+      || 'https://fctokyo.xyz/ticket/'
     ),
   };
 }
@@ -557,7 +557,7 @@ function serializeValue_(value, name) {
 
 
 function getSampleRows_() {
-  const ticketApp = 'https://club-ticket-navi-fctokyo-test.streamlit.app/';
+  const ticketApp = 'https://fctokyo.xyz/ticket/';
   const row = (values) => HEADERS.map((header) => (
     Object.prototype.hasOwnProperty.call(values, header) ? values[header] : ''
   ));

@@ -1,5 +1,15 @@
 # FC東京 試合日程カレンダー v0.1.0
 
+## 公開URL
+
+- 現行：`https://fctokyo.xyz/calendar/`
+- 旧Streamlit：`https://fc-tokyo-match-calendar.streamlit.app/`
+  - `app.py` は現行URLへの移転案内・自動転送用です。
+  - 従来のStreamlit本体は `legacy_app.py` に保存しています。
+- チケット発売日ナビ：`https://fctokyo.xyz/ticket/`
+
+---
+
 FC東京トップチームとFC東京U-21の試合日程を、公開Googleカレンダーとして配信する初版です。
 
 ## 初版のポイント
@@ -73,7 +83,7 @@ Apps Scriptの左側にある歯車アイコン「プロジェクトの設定」
 |---|---|
 | `TOP_CALENDAR_ID` | トップチーム用カレンダーID |
 | `U21_CALENDAR_ID` | U-21用カレンダーID |
-| `TICKET_APP_URL` | `https://club-ticket-navi-fctokyo-test.streamlit.app/` |
+| `TICKET_APP_URL` | `https://fctokyo.xyz/ticket/` |
 
 ---
 
@@ -153,7 +163,7 @@ Apps Script画面で、
 MASTER_API_URL = "https://script.google.com/macros/s/xxxxxxxx/exec"
 TOP_CALENDAR_ID = "xxxxxxxx@group.calendar.google.com"
 U21_CALENDAR_ID = "yyyyyyyy@group.calendar.google.com"
-TICKET_APP_URL = "https://club-ticket-navi-fctokyo-test.streamlit.app/"
+TICKET_APP_URL = "https://fctokyo.xyz/ticket/"
 ```
 
 ローカルで確認するときは、
@@ -168,7 +178,7 @@ TICKET_APP_URL = "https://club-ticket-navi-fctokyo-test.streamlit.app/"
 
 ---
 
-# 9. Streamlitへ公開する
+# 9. 旧Streamlit URLの移転案内を公開する
 
 GitHubリポジトリへ以下をアップロードします。
 
@@ -177,7 +187,7 @@ GitHubリポジトリへ以下をアップロードします。
 - `data/`
 - `.streamlit/config.toml`
 
-Streamlit Community Cloudで `app.py` を指定してデプロイします。
+Streamlit Community Cloudでは `app.py` を指定してデプロイします。現在の `app.py` は `https://fctokyo.xyz/calendar/` への自動転送用です。従来画面をローカル確認する場合は `legacy_app.py` を起動します。
 
 ---
 
@@ -237,7 +247,7 @@ Streamlit Community Cloudで `app.py` を指定してデプロイします。
 カレンダーアプリから、既存のチケット発売日ナビへリンクします。
 
 ```text
-https://club-ticket-navi-fctokyo-test.streamlit.app/
+https://fctokyo.xyz/ticket/
 ```
 
 ## 次の段階

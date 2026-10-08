@@ -7,7 +7,7 @@
 FC東京版の設定へ次を追加します。
 
 ```python
-"match_calendar_url": "https://公開後のカレンダーアプリURL.streamlit.app/",
+"match_calendar_url": "https://fctokyo.xyz/calendar/",
 ```
 
 ## app.py に追加
